@@ -9,6 +9,6 @@ public class IndexController {
 	//实现页面的通用跳转
 	@RequestMapping("/page/{param}")
 	public String index(@PathVariable String param){
-		return "index";
+		return param;
 	}
 }

@@ -26,6 +26,4 @@
 
 	<!-- 放行静态资源文件 -->
 	<mvc:default-servlet-handler/>
-	
-
 </beans>
