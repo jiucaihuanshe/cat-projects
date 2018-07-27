@@ -6,4 +6,21 @@
 	<select id="findAll" resultType="Item">
 		select * from tb_item order by updated desc
 	</select>
+	<select id="findItemCount" resultType="int">
+		select count(*) from tb_item
+	</select>
+	<select id="findItemByPage" resultType="Item">
+		select * from tb_item order by updated desc limit #{begin},#{rows}
+	</select>
+	<select id="findItemNameById" resultType="string">
+		select name from tb_item_cat where id = #{itemId}
+	</select>
+	<select id="queryItemCatNameByItemId" resultType="string">
+		SELECT tic.name FROM tb_item ti JOIN tb_item_cat tic ON ti.cid=tic.id WHERE ti.id=#{itemId}
+	</select>
+	<update id="updateStatus">
+		update tb_item set status = #{status} where id in (
+		<foreach collection="ids" separator="," item="id">#{id}</foreach>
+		)
+	</update>
 </mapper>

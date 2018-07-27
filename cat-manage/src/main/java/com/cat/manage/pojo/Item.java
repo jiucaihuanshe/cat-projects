@@ -1,10 +1,17 @@
 package com.cat.manage.pojo;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * item对象
  */
 import com.cat.common.po.BasePojo;
-
+@Table(name="tb_item")
 public class Item extends BasePojo{
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;			//商品Id
 	private String title;		//商品标题
 	private String sellPoint;	//商品卖点

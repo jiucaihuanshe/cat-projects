@@ -115,6 +115,7 @@ var TT = KindEditorUtil = {		//相当于java中定义的工具类，里面提供
     
     // 初始化选择类目组件
     initItemCat : function(data){
+	    //console.log(data);
     	$(".selectItemCat").each(function(i,e){//i= index 下标，e：element：元素
     		var _ele = $(e);
     		if(data && data.cid){
