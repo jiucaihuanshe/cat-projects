@@ -101,10 +101,9 @@ public class ItemController {
 	//url:http://localhost:8091/item/query/item/desc/1474391957
 	@RequestMapping("/query/item/desc/{itemId}")
 	@ResponseBody
-	public SysResult findItemDesc(Long itemId){
+	public SysResult findItemDesc(@PathVariable Long itemId){
 		try {
 			ItemDesc itemDesc = itemService.findItemDesc(itemId);
-			System.out.println(itemDesc);
 			return SysResult.oK(itemDesc);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -31,6 +31,7 @@ import com.cat.common.vo.PicUploadResult;
 @Service
 public class FileUploadServiceImpl implements FileUploadService {
 	private String dirPath = "C:/tedu/workspace/jt-upload/";	//定义本地磁盘路径
+							//Linux /usr/local/src/jt-upload/
 	private String url = "http://image.jt.com/";	//定义url访问路径
 	@Override
 	public PicUploadResult uploadFile(MultipartFile uploadFile) {
