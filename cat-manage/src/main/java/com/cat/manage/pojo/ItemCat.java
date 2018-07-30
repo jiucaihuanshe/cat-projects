@@ -6,7 +6,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.cat.common.po.BasePojo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name="tb_item_cat")
+//忽略未知属性,在爬虫时经常使用
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class ItemCat extends BasePojo{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
