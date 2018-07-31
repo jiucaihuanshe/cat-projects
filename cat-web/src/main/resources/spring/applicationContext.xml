@@ -28,6 +28,7 @@
 			<list>
 				<value>classpath:/property/jdbc.properties</value>
 				<value>classpath:/property/redis.properties</value>
+				<value>classpath:/property/httpclient.properties</value>
 			</list>
 		</property>
 	</bean>

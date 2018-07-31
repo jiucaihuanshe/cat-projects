@@ -24,4 +24,6 @@ public interface ItemService {
 	void updateStatus(Long[] ids, int status);
 	//查询描述信息
 	ItemDesc findItemDesc(Long itemId);
+	
+	Item findItemById(Long itemId);
 }
