@@ -21,6 +21,7 @@ public class Item extends BasePojo{
 	private String image;		//图片
 	private Long cid;		//所属分类
 	private Integer status;		//状态
+	
 	public Long getId() {
 		return id;
 	}

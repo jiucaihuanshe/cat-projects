@@ -11,12 +11,19 @@ import com.cat.manage.mapper.ItemDescMapper;
 import com.cat.manage.mapper.ItemMapper;
 import com.cat.manage.pojo.Item;
 import com.cat.manage.pojo.ItemDesc;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import redis.clients.jedis.JedisCluster;
+import sun.tools.jar.resources.jar;
 @Service
 public class ItemServiceImpl implements ItemService {
 	@Autowired
 	private ItemMapper itemMapper;
 	@Autowired
 	private ItemDescMapper itemDescMapper;
+	@Autowired
+	private JedisCluster jedisCluster;
+	private static final ObjectMapper objectMapper = new ObjectMapper();
 	@Override
 	public List<Item> findAll() {
 		return itemMapper.findAll();
@@ -49,6 +56,15 @@ public class ItemServiceImpl implements ItemService {
 		itemDesc.setCreated(item.getCreated());
 		itemDesc.setUpdated(item.getCreated());
 		itemDescMapper.insert(itemDesc);
+		
+		//将商品信息加入redis缓存
+		try {
+			String jsonData = objectMapper.writeValueAsString(item);
+			String key = "ITEM_"+item.getId();
+			jedisCluster.set(key, jsonData);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	@Override
 	public String queryItemCatNameByItemId(Long itemId) {
@@ -65,6 +81,16 @@ public class ItemServiceImpl implements ItemService {
 		itemDesc.setUpdated(item.getCreated());
 		itemDesc.setItemDesc(desc);
 		itemDescMapper.updateByPrimaryKeySelective(itemDesc);
+		
+		//商品修改后，将缓存数据删除，在重新添加
+		try {
+			jedisCluster.del("ITEM_"+item.getId());
+			String jsonData = objectMapper.writeValueAsString(item);
+			String key = "ITEM_"+item.getId();
+			jedisCluster.set(key, jsonData);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	@Override
 	public void deleteItems(Long[] ids) {
@@ -72,6 +98,11 @@ public class ItemServiceImpl implements ItemService {
 		itemMapper.deleteByIDS(ids);
 		//删除商品描述信息
 		itemDescMapper.deleteByIDS(ids);
+		
+		//商品删除时,将缓存删除
+		for(Long id:ids){
+			jedisCluster.del("ITEM_"+id);
+		}
 	}
 	@Override
 	public void updateStatus(Long[] ids, int status) {

@@ -1,5 +1,7 @@
 package com.cat.web.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cat.web.pojo.Item;
+import com.cat.web.pojo.ItemDesc;
 import com.cat.web.service.ItemService;
 
 @Controller
@@ -19,9 +22,10 @@ public class ItemController {
 	public String findItemById(@PathVariable Long itemId,Model model){
 		//经过分析前台需要通过${item.id}的方式进行取值
 		//1.准备一个item对象并且将item对象存入域中(request域)
-		//2.根据ItemId查询信息
-		Item item = itemService.findItemById(itemId);
-		model.addAttribute("item", item);
+		//2.根据ItemId查询信息 为商品信息添加缓存操作
+		Map<String, Object> map = itemService.findItemById(itemId);
+		model.addAttribute("item", map.get("item"));
+		model.addAttribute("itemDesc", map.get("itemDesc"));
 		//经过视图解析器跳转页面
 		return "item";
 	}
