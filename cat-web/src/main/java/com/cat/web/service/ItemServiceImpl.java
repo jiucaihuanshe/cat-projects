@@ -26,37 +26,37 @@ public class ItemServiceImpl implements ItemService {
 		try {
 			//通过后台查询Item对象的JSON数据
 			String restJSON = httpClientService.doGet(uri);
-			Map<String, Object> item = objectMapper.readValue(restJSON, Map.class);
-			return item;
+			Map<String, Object> map = objectMapper.readValue(restJSON, Map.class);
+			return map;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	/*@Override
+	@Override
 	public Map<String, Object> findItemByIdCache(Long itemId) {
-		*//**
+		/**
 		 * 1.先查询缓存，如果缓存中有数据则先将JSON数据转化为对象之后返回
 		 * 2.如果缓存中没有该数据，则先远程调用，之后将数据存入缓存中。
-		 *//*
+		 */
 		//形成唯一的标识
 		String key = "ITEM_"+itemId;
 		String jsonResult= jedisCluster.get(key);
 		try {
 			if(StringUtils.isEmpty(jsonResult)){
 				//进行远程调用
-				Item item = findItemById(itemId);
-				String jsonData = objectMapper.writeValueAsString(item);
+				Map<String, Object> map = findItemById(itemId);
+				String jsonData = objectMapper.writeValueAsString(map);
 				jedisCluster.set(key, jsonData);
-				return item;
+				return map;
 			}else{
-				Item item = objectMapper.readValue(jsonResult, Item.class);
-				return item;
+				Map<String, Object> map = objectMapper.readValue(jsonResult, Map.class);
+				return map;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
-	}*/
+	}
 
 }

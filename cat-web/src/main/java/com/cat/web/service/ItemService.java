@@ -10,5 +10,5 @@ public interface ItemService {
 	Map<String, Object> findItemById(Long itemId);
 	
 	//添加缓存操作
-	//Map<String, Object> findItemByIdCache(Long itemId);
+	Map<String, Object> findItemByIdCache(Long itemId);
 }
