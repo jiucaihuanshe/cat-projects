@@ -16,12 +16,14 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private HttpClientService httpClientService;
 	private static final ObjectMapper objectMapper = new ObjectMapper();
+	//返回ticket数据
 	//用户登录
 	@Override
 	public String findUserByUP(String username, String password) {
 		//httpClient
 		String uri = "http://sso.jt.com/user/login";
 		Map<String, String> map = new HashMap<>();
+		//注意不要有空格为了网络中传递的速度更快采用简单字符传递
 		map.put("u", username);
 		map.put("p", password);
 		try {

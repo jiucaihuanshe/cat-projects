@@ -34,7 +34,7 @@ public class UserController {
 	
 	//用户注册
 	//url:http://www.jt.com/service/user/doRegister
-	@RequestMapping("doRegister")
+	@RequestMapping("/doRegister")
 	@ResponseBody
 	public SysResult saveUser(User user){
 		String username = null;
@@ -66,7 +66,7 @@ public class UserController {
 			//获取用户的ticket
 			String ticket = userService.findUserByUP(username,password);
 			//ticket不为空
-			if(StringUtils.isEmpty(ticket)){
+			if(!StringUtils.isEmpty(ticket)){
 				CookieUtils.setCookie(request, response, "JT_TICKET", ticket);
 				return SysResult.oK(ticket);
 			}

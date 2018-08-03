@@ -61,6 +61,7 @@ public class UserServiceImpl implements UserService {
 				String userJSON = objectMapper.writeValueAsString(user);
 				//将数据存入redis中
 				jedisCluster.set(md5Ticket, userJSON);
+				return md5Ticket;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
