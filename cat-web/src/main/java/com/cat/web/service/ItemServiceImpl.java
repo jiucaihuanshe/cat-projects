@@ -21,20 +21,20 @@ public class ItemServiceImpl implements ItemService {
 	private static final ObjectMapper objectMapper = new ObjectMapper();
 	//前台项目没有连接数据库,所以查询操作依赖后台
 	@Override
-	public Map<String, Object> findItemById(Long itemId) {
+	public Item findItemById(Long itemId) {
 		String uri = "http://manage.jt.com/web/item/"+itemId;
 		try {
 			//通过后台查询Item对象的JSON数据
 			String restJSON = httpClientService.doGet(uri);
-			Map<String, Object> map = objectMapper.readValue(restJSON, Map.class);
-			return map;
+			Item item = objectMapper.readValue(restJSON, Item.class);
+			return item;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 	@Override
-	public Map<String, Object> findItemByIdCache(Long itemId) {
+	public Item findItemByIdCache(Long itemId) {
 		/**
 		 * 1.先查询缓存，如果缓存中有数据则先将JSON数据转化为对象之后返回
 		 * 2.如果缓存中没有该数据，则先远程调用，之后将数据存入缓存中。
@@ -45,13 +45,13 @@ public class ItemServiceImpl implements ItemService {
 		try {
 			if(StringUtils.isEmpty(jsonResult)){
 				//进行远程调用
-				Map<String, Object> map = findItemById(itemId);
-				String jsonData = objectMapper.writeValueAsString(map);
+				Item item = findItemById(itemId);
+				String jsonData = objectMapper.writeValueAsString(item);
 				jedisCluster.set(key, jsonData);
-				return map;
+				return item;
 			}else{
-				Map<String, Object> map = objectMapper.readValue(jsonResult, Map.class);
-				return map;
+				Item item = objectMapper.readValue(jsonResult, Item.class);
+				return item;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

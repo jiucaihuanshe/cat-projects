@@ -7,8 +7,8 @@ import com.cat.web.pojo.ItemDesc;
 
 public interface ItemService {
 	//根据itemId查询商品信息
-	Map<String, Object> findItemById(Long itemId);
+	Item findItemById(Long itemId);
 	
 	//添加缓存操作
-	Map<String, Object> findItemByIdCache(Long itemId);
+	Item findItemByIdCache(Long itemId);
 }

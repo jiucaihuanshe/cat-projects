@@ -22,12 +22,9 @@ public class WebItemController {
 	private ItemService itemService;
 	@RequestMapping("/{itemId}")
 	@ResponseBody
-	public Map<String, Object> findItemById(@PathVariable Long itemId){
+	public Item findItemById(@PathVariable Long itemId){
 		Item item = itemService.findItemById(itemId);
-		ItemDesc itemDesc = itemService.findItemDesc(itemId);
-		Map<String, Object> map = new HashMap<>();
-		map.put("item", item);
-		map.put("itemDesc", itemDesc);
-		return map;
+		System.out.println("item:"+item);
+		return item;
 	}
 }
