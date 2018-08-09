@@ -11,7 +11,7 @@
 		<setting name="cacheEnabled" value="false" />
 	</settings>
 	<typeAliases>
-		<package name="com.cat.order.pojo"/>
+		<package name="com.cat.dubbo.pojo"/>
 	</typeAliases>
 	
 	<plugins>

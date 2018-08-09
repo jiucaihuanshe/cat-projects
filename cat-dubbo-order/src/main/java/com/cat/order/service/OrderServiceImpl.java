@@ -84,4 +84,9 @@ public class OrderServiceImpl implements OrderService {
 		return order;
 	}
 
+	//通过sql实现多表关联查询
+	@Override
+	public Order queryByOrderId(String orderId){
+		return orderMapper.queryByOrderId(orderId);
+	}
 }

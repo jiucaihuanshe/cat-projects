@@ -16,6 +16,7 @@ import com.cat.dubbo.pojo.Order;
 import com.cat.dubbo.service.CartService;
 import com.cat.dubbo.service.OrderService;
 import com.cat.web.util.UserThreadLocal;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 
 @Controller
 @RequestMapping("/order")
@@ -58,11 +59,26 @@ public class OrderController {
 	}
 	
 	//订单调整
-	@RequestMapping("/success")
+	//@RequestMapping("/success")
 	public String success(@RequestParam("id")String orderId,Model model){
 		Order order = orderService.findOrderById(orderId);
 		model.addAttribute("order", order);
 		//转向成功页面
+		return "success";
+	}
+	
+	/**
+	 * 以下部分为补充：关联查询
+	 * 当订单查询成功后，返回orderId，需要根据orderId查询订单数据，需要三张表关联查询，将获取的
+	 * 数据存入request域中，方便程序调用
+	 * url:/order/success.html?id=1213131 get提交
+	 */
+	@RequestMapping("/success")
+	public String queryByOrderId(@RequestParam("id")String orderId,Model model){
+		//通过Dubbo的方式获取数据
+		Order order = orderService.queryByOrderId(orderId);
+		model.addAttribute("order", order);
+		//实现页面跳转
 		return "success";
 	}
 }
