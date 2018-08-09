@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cat.web.pojo.Cart;
-import com.cat.web.service.CartService;
+import com.cat.dubbo.pojo.Cart;
+import com.cat.dubbo.service.CartService;
 import com.cat.web.util.UserThreadLocal;
 
 @Controller

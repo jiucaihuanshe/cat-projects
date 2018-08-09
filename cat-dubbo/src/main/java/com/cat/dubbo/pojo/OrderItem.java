@@ -1,4 +1,4 @@
-package com.cat.web.pojo;
+package com.cat.dubbo.pojo;
 
 import java.io.Serializable;
 
@@ -12,8 +12,11 @@ import com.cat.common.po.BasePojo;
  * @author wangchaofan
  *
  */
+@Table(name="tb_order_item")
 public class OrderItem implements Serializable{
+	@Id
 	private String itemId;		//商品id
+	@Id
 	private String orderId;		//订单编号
 	private Integer num;		//购买数量
 	private String title;		//商品标题

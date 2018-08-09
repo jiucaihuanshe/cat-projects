@@ -23,7 +23,6 @@
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"/>
 		<property name="mapperLocations" value="classpath:/mybatis/mappers/*.xml"/>
-		<!-- 添加接口的包路径 -->
 		<property name="typeAliasesPackage" value="com.cat.dubbo.pojo"/>
 	</bean>
 	<!-- 为mapper接口生成代理对象 
@@ -33,6 +32,6 @@
 	 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 定义接口包路径 -->
-		<property name="basePackage" value="com.cat.cart.mapper"/>
+		<property name="basePackage" value="com.cat.order.mapper"/>
 	</bean>
 </beans>

@@ -8,7 +8,6 @@ import org.springframework.util.StringUtils;
 
 import com.cat.common.service.HttpClientService;
 import com.cat.web.pojo.Item;
-import com.cat.web.pojo.ItemDesc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import redis.clients.jedis.JedisCluster;

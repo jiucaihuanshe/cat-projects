@@ -1,4 +1,4 @@
-package com.cat.web.pojo;
+package com.cat.dubbo.pojo;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,7 +10,9 @@ import com.cat.common.po.BasePojo;
  * @author wangchaofan
  *
  */
+@Table(name="tb_order_shipping")
 public class OrderShipping extends BasePojo{
+	@Id
 	private String orderId;			//订单号
 	private String receiverName;	//收货人名称
 	private String receiverPhone;	//手机号

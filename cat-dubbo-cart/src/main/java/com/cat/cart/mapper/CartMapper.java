@@ -1,7 +1,7 @@
 package com.cat.cart.mapper;
 
 import com.cat.common.mapper.SysMapper;
-import com.cat.cart.pojo.Cart;
+import com.cat.dubbo.pojo.Cart;
 
 public interface CartMapper extends SysMapper<Cart>{
 

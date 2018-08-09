@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cat.web.pojo.Item;
-import com.cat.web.pojo.ItemDesc;
 import com.cat.web.service.ItemService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

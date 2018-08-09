@@ -1,8 +1,8 @@
-package com.cat.cart.service;
+package com.cat.dubbo.service;
 
 import java.util.List;
 
-import com.cat.cart.pojo.Cart;
+import com.cat.dubbo.pojo.Cart;
 
 public interface CartService {
 	//根据用户id查询购物车信息

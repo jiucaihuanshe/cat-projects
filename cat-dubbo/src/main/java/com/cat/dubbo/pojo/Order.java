@@ -1,4 +1,4 @@
-package com.cat.web.pojo;
+package com.cat.dubbo.pojo;
 
 import java.util.Date;
 import java.util.List;
@@ -14,14 +14,18 @@ import com.cat.common.po.BasePojo;
  * @author wangchaofan
  *
  */
+@Table(name="tb_order")
 public class Order extends BasePojo{
 	//添加关联关系
 	/**
 	 * orderItems是由于对象的依赖关系引入的,
 	 * order表中没有对应的字段,需要将该字段进行忽略.
 	 */
+	@Transient	//忽略该字段进行映射 该注解应用于mybatis中的通用Mapper
 	private List<OrderItem> orderItems;
+	@Transient
 	private OrderShipping orderShipping;
+	@Id
 	private String orderId;			//订单号：登录用户id+当前时间戳
 	private String payment;			//实付金额
 	private Integer paymentType;	//支付类型 1.在线支付 2.货到付款

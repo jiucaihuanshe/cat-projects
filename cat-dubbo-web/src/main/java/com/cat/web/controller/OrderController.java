@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cat.common.vo.SysResult;
-import com.cat.web.pojo.Cart;
-import com.cat.web.pojo.Order;
-import com.cat.web.service.CartService;
-import com.cat.web.service.OrderService;
+import com.cat.dubbo.pojo.Cart;
+import com.cat.dubbo.pojo.Order;
+import com.cat.dubbo.service.CartService;
+import com.cat.dubbo.service.OrderService;
 import com.cat.web.util.UserThreadLocal;
 
 @Controller
@@ -59,7 +59,7 @@ public class OrderController {
 	
 	//订单调整
 	@RequestMapping("/success")
-	public String success(@RequestParam("id")Long orderId,Model model){
+	public String success(@RequestParam("id")String orderId,Model model){
 		Order order = orderService.findOrderById(orderId);
 		model.addAttribute("order", order);
 		//转向成功页面

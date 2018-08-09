@@ -7,14 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.cart.mapper.CartMapper;
-import com.cat.cart.pojo.Cart;
 import com.cat.common.service.BaseService;
+import com.cat.dubbo.pojo.Cart;
+import com.cat.dubbo.service.CartService;
 
 @Service
 public class CartServiceImpl extends BaseService<Cart> implements CartService {
 	@Autowired
 	private CartMapper cartMapper;
 
+	//根据Dubbo接口实现查询方法
+	//如果需要对象进行远程传输，必须实例化
 	@Override
 	public List<Cart> findCartByUserId(Long userId) {
 		Cart cart = new Cart();
