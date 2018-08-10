@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.cat</groupId>
-  <artifactId>cat-parent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+	<groupId>com.cat</groupId>
+	<artifactId>cat-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-  <name>cat-parent</name>
-  <url>http://maven.apache.org</url>
+	<name>cat-parent</name>
+	<url>http://maven.apache.org</url>
 
-<!-- 集中定义依赖版本号 -->
+	<!-- 集中定义依赖版本号 -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.10</junit.version>
@@ -49,7 +49,7 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-	
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -66,8 +66,8 @@
 			<artifactId>spring-aspects</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
-		
+
+
 		<!-- Mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -85,7 +85,7 @@
 			<version>${mybatis.paginator.version}</version>
 		</dependency>
 
-		
+
 		<!-- MySql -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -143,7 +143,7 @@
 			<artifactId>httpmime</artifactId>
 			<version>4.3.1</version>
 		</dependency>
-		
+
 		<!-- 消息队列 -->
 		<dependency>
 			<groupId>com.rabbitmq</groupId>
@@ -151,9 +151,9 @@
 			<version>3.5.1</version>
 		</dependency>
 		<dependency>
-		       <groupId>org.springframework.amqp</groupId>
-		       <artifactId>spring-rabbit</artifactId>
-		       <version>1.4.0.RELEASE</version>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+			<version>1.4.0.RELEASE</version>
 		</dependency>
 
 		<!-- JSP相关 -->
@@ -208,13 +208,13 @@
 			<version>${jedis.version}</version>
 		</dependency>
 
-		<!--添加spring-datajar包  -->
+		<!--添加spring-datajar包 -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
 			<version>1.4.1.RELEASE</version>
 		</dependency>
-		
+
 		<!-- 字符加密、解密 -->
 		<dependency>
 			<groupId>commons-codec</groupId>
@@ -228,21 +228,21 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.1.3.Final</version>
 		</dependency>
-		
+
 		<!-- 定时任务 -->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<version>2.2.1</version>
 		</dependency>
-		<!--定时任务需要依赖c3p0jar包  -->
+		<!--定时任务需要依赖c3p0jar包 -->
 		<dependency>
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
 			<version>0.9.1.2</version>
 		</dependency>
-		
-		<!--dubbo依赖  -->
+
+		<!--dubbo依赖 -->
 		<dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
@@ -268,7 +268,7 @@
 			<artifactId>xstream</artifactId>
 			<version>1.4.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.bsf</groupId>
 			<artifactId>bsf-api</artifactId>
@@ -304,7 +304,7 @@
 			<artifactId>cxf-rt-transports-http</artifactId>
 			<version>2.6.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.thrift</groupId>
 			<artifactId>libthrift</artifactId>
@@ -315,7 +315,7 @@
 			<artifactId>hessian</artifactId>
 			<version>4.0.7</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.cache</groupId>
 			<artifactId>cache-api</artifactId>
@@ -366,6 +366,42 @@
 			<groupId>de.ruedigermoeller</groupId>
 			<artifactId>fst</artifactId>
 			<version>1.55</version>
+		</dependency>
+<!-- 全文检索lucene -->
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-core</artifactId>
+			<version>5.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-analyzers-common</artifactId>
+			<version>5.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-queryparser</artifactId>
+			<version>5.2.1</version>
+		</dependency>
+		
+		<!-- IK分词器 -->
+		<dependency>
+			<groupId>org.wltea.analyzer</groupId>
+			<artifactId>ik-analyzer</artifactId>
+			<version>5.3.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.solr</groupId>
+			<artifactId>solr-solrj</artifactId>
+			<version>5.2.1</version>
+		</dependency>
+
+		<!-- 爬虫jsoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.9.1</version>
 		</dependency>
 	</dependencies>
 </project>

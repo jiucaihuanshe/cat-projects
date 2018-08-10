@@ -3,6 +3,7 @@ package com.cat.order.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,8 @@ public class OrderServiceImpl implements OrderService {
 	private OrderItemMapper orderItemMapper;
 	@Autowired
 	private OrderShippingMapper orderShippingMapper;
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
 	/**
 	 * 思路:新增订单,由于order和orderItem和orderShipping具有关联关系.
 	 * 所以一次入库三张表
@@ -42,7 +45,13 @@ public class OrderServiceImpl implements OrderService {
 		//1.准备orderId
 		String orderId = order.getUserId()+System.currentTimeMillis()+"";
 		
-		//2.为Order对象补齐数据
+		//为rabbitMQ封装数据
+		order.setOrderId(orderId);
+		//将order信息发往消息队列中rabbitMQ中 定义路由key
+		rabbitTemplate.convertAndSend("save.Order",order);
+		
+		
+		/*//2.为Order对象补齐数据
 		order.setOrderId(orderId);
 		order.setCreated(new Date());
 		order.setUpdated(order.getCreated());
@@ -61,8 +70,9 @@ public class OrderServiceImpl implements OrderService {
 		orderShipping.setOrderId(orderId);
 		orderShipping.setCreated(order.getCreated());
 		orderShipping.setUpdated(order.getCreated());
-		orderShippingMapper.insert(orderShipping);
+		orderShippingMapper.insert(orderShipping);*/
 		
+		//返回orderId 用于查询操作
 		return orderId;
 	}
 	
